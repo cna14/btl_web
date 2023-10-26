@@ -19,7 +19,5 @@ public partial class TbChiTietBanh
 
     public string? CotBanh { get; set; }
 
-    public int? SoLuong { get; set; }
-
     public string? MaSp { get; set; }
 }

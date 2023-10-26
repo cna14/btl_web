@@ -11,5 +11,13 @@ public partial class TbSanPham
 
     public string? TenSp { get; set; }
 
-    public decimal? GiaTien { get; set; }
+    public Decimal? GiaTien { get; set; }
+
+    public Boolean? IsBanh { get; set; }
+
+    public string? MoTa { get; set; }
+
+    public int? SoLuong { get; set; }
+
+    public string? DuongDanAnh { get; set; }
 }

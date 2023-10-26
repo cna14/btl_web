@@ -21,8 +21,6 @@ public partial class QlcoffeeBakeryContext : DbContext
 
     public virtual DbSet<TbChiTietHoaDon> TbChiTietHoaDons { get; set; }
 
-    public virtual DbSet<TbHatCaPhe> TbHatCaPhes { get; set; }
-
     public virtual DbSet<TbHoaDonBan> TbHoaDonBans { get; set; }
 
     public virtual DbSet<TbKhachHang> TbKhachHangs { get; set; }
@@ -52,13 +50,20 @@ public partial class QlcoffeeBakeryContext : DbContext
 
         modelBuilder.Entity<TbChiTietCaPhe>(entity =>
         {
+            entity.HasKey(e => e.Id).HasName("PK_tb_HatCaPhe");
+
             entity.ToTable("tb_ChiTietCaPhe");
 
-            entity.Property(e => e.MaHat).HasMaxLength(10);
+            entity.Property(e => e.DoCao).HasMaxLength(50);
+            entity.Property(e => e.HuongVi).HasMaxLength(50);
             entity.Property(e => e.MaSp)
                 .HasMaxLength(10)
                 .HasColumnName("MaSP");
-            entity.Property(e => e.ThanhPhan).HasMaxLength(50);
+            entity.Property(e => e.MucRang).HasMaxLength(50);
+            entity.Property(e => e.NgayRang).HasColumnType("date");
+            entity.Property(e => e.SoChe).HasMaxLength(50);
+            entity.Property(e => e.TenHat).HasMaxLength(50);
+            entity.Property(e => e.VungTrong).HasMaxLength(50);
         });
 
         modelBuilder.Entity<TbChiTietHoaDon>(entity =>
@@ -70,20 +75,6 @@ public partial class QlcoffeeBakeryContext : DbContext
             entity.Property(e => e.MaSp)
                 .HasMaxLength(10)
                 .HasColumnName("MaSP");
-        });
-
-        modelBuilder.Entity<TbHatCaPhe>(entity =>
-        {
-            entity.ToTable("tb_HatCaPhe");
-
-            entity.Property(e => e.DoCao).HasMaxLength(50);
-            entity.Property(e => e.HuongVi).HasMaxLength(50);
-            entity.Property(e => e.MaHat).HasMaxLength(10);
-            entity.Property(e => e.MucRang).HasMaxLength(50);
-            entity.Property(e => e.NgayRang).HasColumnType("date");
-            entity.Property(e => e.SoChe).HasMaxLength(50);
-            entity.Property(e => e.TenHat).HasMaxLength(50);
-            entity.Property(e => e.VungTrong).HasMaxLength(50);
         });
 
         modelBuilder.Entity<TbHoaDonBan>(entity =>
@@ -116,6 +107,7 @@ public partial class QlcoffeeBakeryContext : DbContext
             entity.Property(e => e.MaSp)
                 .HasMaxLength(10)
                 .HasColumnName("MaSP");
+            entity.Property(e => e.MoTa).HasMaxLength(500);
             entity.Property(e => e.TenSp)
                 .HasMaxLength(50)
                 .HasColumnName("TenSP");

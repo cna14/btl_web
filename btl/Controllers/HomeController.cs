@@ -6,6 +6,7 @@ namespace btl.Controllers
 {
     public class HomeController : Controller
     {
+        QlcoffeeBakeryContext a = new QlcoffeeBakeryContext();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -15,7 +16,8 @@ namespace btl.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var listsanpham = a.TbSanPhams.ToList();
+            return View(listsanpham);
         }
 
         public IActionResult Privacy()
