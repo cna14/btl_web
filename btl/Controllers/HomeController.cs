@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using btl.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using X.PagedList;
+using X.PagedList.Web.Common;
 
 namespace btl.Controllers
 {
@@ -14,10 +17,15 @@ namespace btl.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            var listsanpham = a.TbSanPhams.ToList();
-            return View(listsanpham);
+            int pageSize = 8;
+            int pageNumber = page==null||page<0?1:page.Value;
+
+            var listsanpham = a.TbSanPhams.AsNoTracking().OrderBy(x=>x.Id);
+            PagedList<TbSanPham> list = new PagedList<TbSanPham>(listsanpham,pageNumber,pageSize);
+
+            return View(list);
         }
 
         public IActionResult Privacy()

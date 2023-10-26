@@ -3,7 +3,8 @@
     Layout = "~/Views/Shared/mainCoffeeLayout.cshtml";
 }
 
-@model List<TbSanPham>
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TbSanPham>
 @foreach(var item in Model)
 {
     <div class="col-md-6 col-lg-4 col-xl-3">
@@ -23,3 +24,6 @@
         </div>
     </div>
 }
+<div class="pagination d-flex justify-content-center mt-5">
+    @Html.PagedListPager(Model, page=>Url.Action("Index", new{page=page}))
+</div>
