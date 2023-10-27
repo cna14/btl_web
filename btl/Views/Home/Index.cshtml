@@ -12,18 +12,38 @@
             <div class="fruite-img">
                 <img src="@item.DuongDanAnh" class="img-fluid w-100 rounded-top" alt="">
             </div>
-            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">@item.IsBanh</div>
+
+            @if (@item.IsBanh == false)
+            {
+                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Coffee</div>
+            } else
+            {
+                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Cake</div>
+            }
+
             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                 <h4>@item.TenSp</h4>
                 <p>@item.MoTa</p>
                 <div class="d-flex justify-content-between flex-lg-wrap">
-                    <p class="text-dark fs-5 fw-bold mb-0">@item.GiaTien</p>
+                    @if (@item.GiaTien % 1000 == 0)
+                    {
+                        var gt = @item.GiaTien / 1000;
+                        <p class="text-dark fs-5 fw-bold mb-0">@gt.000 VNĐ</p>
+                    }
                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Order</a>
                 </div>
             </div>
         </div>
     </div>
 }
-<div class="pagination d-flex justify-content-center mt-5">
-    @Html.PagedListPager(Model, page=>Url.Action("Index", new{page=page}))
+<div class="col-lg-9">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12">
+            <div class="pagination d-flex justify-content-center mt-5">
+                @Html.PagedListPager(Model, page=>Url.Action("Index", new{page=page}))
+            </div>
+        </div>
+    </div>
 </div>
+
+

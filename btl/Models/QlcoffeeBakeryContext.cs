@@ -103,7 +103,7 @@ public partial class QlcoffeeBakeryContext : DbContext
         {
             entity.ToTable("tb_SanPham");
 
-            entity.Property(e => e.GiaTien).HasColumnType("money");
+            entity.Property(e => e.GiaTien).HasColumnType("int");
             entity.Property(e => e.MaSp)
                 .HasMaxLength(10)
                 .HasColumnName("MaSP");
