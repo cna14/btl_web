@@ -10,6 +10,7 @@
 @foreach (var item in Model)
 {
     <div class="col-md-6 col-lg-6 col-xl-4">
+    <a asp-controller="Home" asp-action="DetailsClick" asp-route-MaSP="@item.MaSp">
         <div class="rounded position-relative fruite-item">
             <div class="fruite-img">
                 <img src="@item.DuongDanAnh" class="img-fluid w-100 rounded-top" alt="">
@@ -35,6 +36,7 @@
                 </div>
             </div>
         </div>
+    </a>
     </div>
 }
 
