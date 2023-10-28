@@ -38,6 +38,18 @@ namespace btl.Controllers
             return View(list);
         }
 
+        public IActionResult SanPhamTheoLoai(string MaLoai, int? page)
+        {
+            int pageSize = 6;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+
+            var listsanpham = a.SanPhams.AsNoTracking().Where
+                (x=>x.MaLoai == MaLoai).OrderBy(x => x.MaSp);
+            PagedList<SanPham> list = new PagedList<SanPham>(listsanpham, pageNumber, pageSize);
+            ViewBag.MaLoai = MaLoai;
+            return View(list);
+        }
+
         public IActionResult Privacy()
         {
             return View();

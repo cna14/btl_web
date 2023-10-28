@@ -7,8 +7,8 @@
             {
                 <li>
                     <div class="d-flex justify-content-between fruite-name">
-                        <a href="#"><i class="fas fa-apple-alt me-2"></i>@item.TenLoai</a>
-                        <span>(3)</span>
+                        <a asp-controller="Home" asp-action="SanPhamTheoLoai" asp-route-MaLoai="@item.MaLoai"><i class="fas fa-apple-alt me-2"></i>@item.TenLoai</a>
+                        <span>soluong</span>
                     </div>
                 </li>
             }
