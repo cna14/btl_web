@@ -1,7 +1,18 @@
+using btl.Models;
+using btl.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+var connectionString = builder.Configuration.GetConnectionString("MoCoffeeAndBakeryContext");
+builder.Services.AddDbContext<MoCoffeeAndBakeryContext>(x=>x.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ILoaiSpRepository, LoaiSpRepository>();
+
 
 var app = builder.Build();
 
