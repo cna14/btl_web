@@ -10,7 +10,7 @@ namespace btl.Controllers
 {
     public class HomeController : Controller
     {
-        QlcoffeeBakeryContext a = new QlcoffeeBakeryContext();
+        MoCoffeeAndBakeryContext a = new MoCoffeeAndBakeryContext();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -22,8 +22,8 @@ namespace btl.Controllers
             int pageSize = 8;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
 
-            var listsanpham = a.TbSanPhams.AsNoTracking().OrderBy(x => x.Id);
-            PagedList<TbSanPham> list = new PagedList<TbSanPham>(listsanpham, pageNumber, pageSize);
+            var listsanpham = a.SanPhams.AsNoTracking().OrderBy(x => x.MaSp);
+            PagedList<SanPham> list = new PagedList<SanPham>(listsanpham, pageNumber, pageSize);
 
             return View(list);
         }
@@ -32,8 +32,8 @@ namespace btl.Controllers
             int pageSize = 6;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
 
-            var listsanpham = a.TbSanPhams.AsNoTracking().OrderBy(x => x.Id);
-            PagedList<TbSanPham> list = new PagedList<TbSanPham>(listsanpham, pageNumber, pageSize);
+            var listsanpham = a.SanPhams.AsNoTracking().OrderBy(x => x.MaSp);
+            PagedList<SanPham> list = new PagedList<SanPham>(listsanpham, pageNumber, pageSize);
 
             return View(list);
         }

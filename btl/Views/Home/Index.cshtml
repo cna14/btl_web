@@ -4,7 +4,7 @@
 }
 
 @using X.PagedList.Mvc.Core;
-@model X.PagedList.IPagedList<TbSanPham>
+@model X.PagedList.IPagedList<SanPham>
 @foreach(var item in Model)
 {
     <div class="col-md-6 col-lg-4 col-xl-3">
@@ -13,9 +13,9 @@
                 <img src="@item.DuongDanAnh" class="img-fluid w-100 rounded-top" alt="">
             </div>
 
-            @if (@item.IsBanh == false)
+            @if (@item.MaLoai == "CF")
             {
-                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Coffee</div>
+            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Coffee</div>
             } else
             {
                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Cake</div>
@@ -25,9 +25,9 @@
                 <h4>@item.TenSp</h4>
                 <p>@item.MoTa</p>
                 <div class="d-flex justify-content-between flex-lg-wrap">
-                    @if (@item.GiaTien % 1000 == 0)
+                    @if (@item.GiaBan % 1000 == 0)
                     {
-                        var gt = @item.GiaTien / 1000;
+                        var gt = @item.GiaBan / 1000;
                         <p class="text-dark fs-5 fw-bold mb-0">@gt.000 VNĐ</p>
                     }
                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Order</a>
