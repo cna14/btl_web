@@ -49,6 +49,18 @@ namespace btl.Controllers
             ViewBag.MaLoai = MaLoai;
             return View(list);
         }
+        public IActionResult Details(string MaSP)
+        {
+            var product = a.SanPhams.SingleOrDefault(x => x.MaSp == MaSP);
+            return View(product);
+        }
+        public IActionResult DetailsClick(string MaSP)
+        {
+            var SanPham = a.SanPhams.SingleOrDefault(x=>x.MaSp == MaSP);
+            var AnhSanPham = a.SanPhams.Where(x=>x.MaSp == MaSP).ToList();
+            ViewBag.SanPham = SanPham;
+            return View(SanPham);
+        }
 
         public IActionResult Privacy()
         {

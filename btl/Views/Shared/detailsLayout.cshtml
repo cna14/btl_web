@@ -1,5 +1,4 @@
-﻿@model X.PagedList.IPagedList<SanPham>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,7 +19,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="../coffee/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="../coffeelib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../coffee/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -61,8 +60,8 @@
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
                         <a asp-controller="Home" asp-action="index" class="nav-item nav-link">Home</a>
-                        <a asp-controller="Home" asp-action="menu" class="nav-item nav-link active">Menu</a>
-                        <a asp-controller="Home" asp-action="Details" class="nav-item nav-link">Detail</a>
+                        <a asp-controller="Home" asp-action="menu" class="nav-item nav-link">Menu</a>
+                        <a asp-controller="Home" asp-action="Details" class="nav-item nav-link active">Detail</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Orders</a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
@@ -109,50 +108,66 @@
     <!-- Modal Search End -->
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Menu</h1>
+        <h1 class="text-center text-white display-6">Detail</h1>
         <ol class="breadcrumb justify-content-center mb-0">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="index">Home</a></li>
-            <li class="breadcrumb-item active text-white">Menu</li>
+            <li class="breadcrumb-item active text-white">Detail</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
-    <!-- Fruits Shop Start-->
-    <div class="container-fluid fruite py-5">
+    <!-- Single Product Start -->
+    <div class="container-fluid py-5 mt-5">
         <div class="container py-5">
-            <h1 class="mb-4">Mơ coffee&bakery</h1>
-            <div class="row g-4">
-                <div class="col-lg-12">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-8 col-xl-9">
                     <div class="row g-4">
-                        <div class="col-xl-3">
-                            <div class="input-group w-100 mx-auto d-flex">
-                                <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                                <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-6"></div>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-lg-3">
+                        @RenderBody()
+                        <form action="#">
+                            <h4 class="mb-5 fw-bold">Leave a Reply</h4>
                             <div class="row g-4">
-                                @await Component.InvokeAsync("LoaiSpMenu")
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <input type="email" class="form-control border-0" placeholder="Your Email *">
+                                    </div>
+                                </div>
                                 <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                            <label for="fruits">sorting:</label>
-                                            <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-                                                <option value="volvo">None</option>
-                                                <option value="saab">Popularity</option>
-                                                <option value="opel">Name</option>
-                                                <option value="audi">Price</option>
-                                            </select>
+                                    <div class="border-bottom rounded my-4">
+                                        <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="d-flex justify-content-between py-3 mb-5">
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0 me-3">Please rate:</p>
+                                            <div class="d-flex align-items-center" style="font-size: 12px;">
+                                                <i class="fa fa-star text-muted"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
                                         </div>
+                                        <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="row g-4 justify-content-center">
-                                @RenderBody();
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xl-3">
+                    <div class="row g-4 fruite">
+                        <div class="col-lg-12">
+                            <div class="input-group w-100 mx-auto d-flex mb-4">
+                                <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                                <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div class="mb-4">
+                                @await Component.InvokeAsync("LoaiSpMenu")
                             </div>
                         </div>
                     </div>
@@ -160,7 +175,7 @@
             </div>
         </div>
     </div>
-    <!-- Fruits Shop End-->
+    <!-- Single Product End -->
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
         <div class="container py-5">
@@ -269,4 +284,3 @@
 </body>
 
 </html>
-
