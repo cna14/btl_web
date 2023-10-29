@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Azure;
 using btl.Models;
+using btl.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
@@ -17,6 +18,7 @@ namespace btl.Controllers
         {
             _logger = logger;
         }
+        [Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 8;
@@ -27,6 +29,7 @@ namespace btl.Controllers
 
             return View(list);
         }
+        [Authentication]
         public IActionResult menu(int? page)
         {
             int pageSize = 6;
@@ -37,7 +40,7 @@ namespace btl.Controllers
 
             return View(list);
         }
-
+        [Authentication]
         public IActionResult SanPhamTheoLoai(string MaLoai, int? page)
         {
             int pageSize = 6;
@@ -49,17 +52,19 @@ namespace btl.Controllers
             ViewBag.MaLoai = MaLoai;
             return View(list);
         }
+        [Authentication]
         public IActionResult Details(string MaSP)
         {
             var product = a.SanPhams.SingleOrDefault(x => x.MaSp == MaSP);
             return View(product);
         }
+        [Authentication]
         public IActionResult DetailsClick(string MaSP)
         {
             var SanPham = a.SanPhams.SingleOrDefault(x => x.MaSp == MaSP);
             return View(SanPham);
         }
-
+        [Authentication]
         public IActionResult Privacy()
         {
             return View();
