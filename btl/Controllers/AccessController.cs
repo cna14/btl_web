@@ -53,12 +53,16 @@ namespace btl.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(NguoiDung nguoiDung)
         {
-            if (ModelState.IsValid)
+            var nd = a.NguoiDungs.Where(x => x.TenDangNhap == nguoiDung.TenDangNhap);
+            if (nd.Count() == 0)
             {
-                a.NguoiDungs.Add(nguoiDung);
-                a.SaveChanges();
-                return RedirectToAction("Login", "Access");
-            }
+                if (ModelState.IsValid)
+                {
+                    a.NguoiDungs.Add(nguoiDung);
+                    a.SaveChanges();
+                    return RedirectToAction("Login", "Access");
+                }
+            }   
             return View(nguoiDung);
         }
     }
