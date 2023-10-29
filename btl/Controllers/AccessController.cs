@@ -41,5 +41,25 @@ namespace btl.Controllers
             HttpContext.Session.Remove("TenDangNhap");
             return RedirectToAction("Login", "Access");
         }
+
+        [Route("Register")]
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [Route("Register")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Register(NguoiDung nguoiDung)
+        {
+            if (ModelState.IsValid)
+            {
+                a.NguoiDungs.Add(nguoiDung);
+                a.SaveChanges();
+                return RedirectToAction("Login", "Access");
+            }
+            return View(nguoiDung);
+        }
     }
 }
