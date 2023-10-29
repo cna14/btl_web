@@ -121,24 +121,24 @@
                             </div>
                         </div>
                         <div class="col-6"></div>
+                        <div class="col-xl-3">
+                            <div class="mb-3">
+                                <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
+                                    <label for="fruits">sorting:</label>
+                                    <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
+                                        <option value="volvo">None</option>
+                                        <option value="saab">Popularity</option>
+                                        <option value="opel">Name</option>
+                                        <option value="audi">Price</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row g-4">
                         <div class="col-lg-3">
                             <div class="row g-4">
                                 @await Component.InvokeAsync("LoaiSpMenu")
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                            <label for="fruits">sorting:</label>
-                                            <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-                                                <option value="volvo">None</option>
-                                                <option value="saab">Popularity</option>
-                                                <option value="opel">Name</option>
-                                                <option value="audi">Price</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-lg-9">
