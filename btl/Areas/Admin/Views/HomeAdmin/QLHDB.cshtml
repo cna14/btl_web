@@ -1,0 +1,79 @@
+﻿@using X.PagedList.Mvc.Core;
+@using btl.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<HoaDonBan>
+@{
+    ViewData["Title"] = "QLHDB";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Quản lý hóa đơn bán</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã hóa đơn
+            </th>
+            <th>
+                Tổng giá
+            </th>
+            <th>
+                Số tiền giảm
+            </th>
+            <th>
+                Giá bán
+            </th>
+            <th>
+                Ngày Bán
+            </th>
+            <th>
+                Ghi chú
+            </th>
+            <th>
+                Người dùng
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TongGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaGgNavigation.MaGg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDangNhapNavigation.TenDangNhap)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaHd">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MaHd">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaHd">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    @Html.PagedListPager(Model, page=>Url.Action("QLHDB", new{page=page}), new X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses = new List<String> {"page-item"}, PageClasses = new List<String> {"page-link"}
+    })
+</div>
