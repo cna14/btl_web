@@ -4,35 +4,35 @@
 }
 
 @using X.PagedList.Mvc.Core;
+@*
 @model X.PagedList.IPagedList<SanPham>
+*@
+@model List<SanPham>
 @foreach(var item in Model)
 {
-    <div class="col-md-6 col-lg-4 col-xl-3">
-    <a asp-controller="Home" asp-action="DetailsClick" asp-route-MaSP="@item.MaSp">
-        <div class="rounded position-relative fruite-item">
-            <div class="fruite-img">
-                <img src="@item.DuongDanAnh" class="img-fluid w-100 rounded-top" alt="">
-            </div>
-
-            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">@item.MaLoai</div>
-
-            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                <h4>@item.TenSp</h4>
-                <p>@item.MoTa</p>
-                <div class="d-flex justify-content-between flex-lg-wrap">
-                    @if (@item.GiaBan % 1000 == 0)
-                    {
-                        var gt = @item.GiaBan / 1000;
-                        <p class="text-dark fs-5 fw-bold mb-0">@gt.000 VNĐ</p>
-                    }
-                    <a class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Order</a>
-                </div>
+    <div class="border border-primary rounded position-relative vesitable-item">
+        <a asp-controller="Home" asp-action="DetailsClick" asp-route-MaSP="@item.MaSp">
+        <div class="vesitable-img">
+            <img src="@item.DuongDanAnh" class="img-fluid w-100 rounded-top" alt="">
+        </div>
+        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">@item.MaLoai</div>
+        <div class="p-4 rounded-bottom">
+            <h4>@item.TenSp</h4>
+            <p>@item.MoTa</p>
+            <div class="d-flex justify-content-between flex-lg-wrap">
+                @if (@item.GiaBan % 1000 == 0)
+                {
+                    var gt = @item.GiaBan / 1000;
+                    <p class="text-dark fs-5 fw-bold mb-0">@gt.000 VNĐ</p>
+                }
+                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Order</a>
             </div>
         </div>
-    </a>
+        </a>
     </div>
 }
-<div class="col-lg-12">
+@*
+    <div class="col-lg-12">
     <div class="row g-4 justify-content-center">
         <div class="col-12" >
             <div class="pagination justify-content-center mt-5" style="float:right">
@@ -41,5 +41,7 @@
         </div>
     </div>
 </div>
+*@
+
 
 

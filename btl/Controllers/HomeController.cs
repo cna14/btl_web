@@ -19,15 +19,15 @@ namespace btl.Controllers
             _logger = logger;
         }
         [Authentication]
-        public IActionResult Index(int? page)
+        public IActionResult Index()
         {
-            int pageSize = 8;
+/*          int pageSize = 8;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
 
             var listsanpham = a.SanPhams.AsNoTracking().OrderBy(x => x.MaSp);
-            PagedList<SanPham> list = new PagedList<SanPham>(listsanpham, pageNumber, pageSize);
-
-            return View(list);
+            PagedList<SanPham> list = new PagedList<SanPham>(listsanpham, pageNumber, pageSize);*/
+            var listsanpham = a.SanPhams.ToList();
+            return View(listsanpham);
         }
         [Authentication]
         public IActionResult menu(int? page)
