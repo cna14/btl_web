@@ -56,9 +56,7 @@ namespace btl.Controllers
         }
         public IActionResult DetailsClick(string MaSP)
         {
-            var SanPham = a.SanPhams.SingleOrDefault(x=>x.MaSp == MaSP);
-            var AnhSanPham = a.SanPhams.Where(x=>x.MaSp == MaSP).ToList();
-            ViewBag.SanPham = SanPham;
+            var SanPham = a.SanPhams.SingleOrDefault(x => x.MaSp == MaSP);
             return View(SanPham);
         }
 

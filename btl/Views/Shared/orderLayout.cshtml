@@ -61,7 +61,7 @@
                     <div class="navbar-nav mx-auto">
                         <a asp-controller="Home" asp-action="index" class="nav-item nav-link">Home</a>
                         <a asp-controller="Home" asp-action="menu" class="nav-item nav-link">Menu</a>
-                        <a asp-controller="Home" asp-action="Details" class="nav-item nav-link active">Detail</a>
+                        <a asp-controller="Home" asp-action="Details" class="nav-item nav-link">Detail</a>
 
                     </div>
                     <div class="d-flex m-3 me-0">
@@ -99,74 +99,52 @@
     <!-- Modal Search End -->
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Detail</h1>
+        <h1 class="text-center text-white display-6">Cart</h1>
         <ol class="breadcrumb justify-content-center mb-0">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="index">Home</a></li>
-            <li class="breadcrumb-item active text-white">Detail</li>
+            <li class="breadcrumb-item active text-white">Your order</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
-    <!-- Single Product Start -->
-    <div class="container-fluid py-5 mt-5">
+    <!-- Cart Page Start -->
+    <div class="container-fluid py-5">
         <div class="container py-5">
-            <div class="row g-4 mb-5">
-                <div class="col-lg-8 col-xl-9">
-                    <div class="row g-4">
-                        @RenderBody()
-                        <form action="#">
-                            <h4 class="mb-5 fw-bold">Leave a Reply</h4>
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="border-bottom rounded">
-                                        <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="border-bottom rounded">
-                                        <input type="email" class="form-control border-0" placeholder="Your Email *">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="border-bottom rounded my-4">
-                                        <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="d-flex justify-content-between py-3 mb-5">
-                                        <div class="d-flex align-items-center">
-                                            <p class="mb-0 me-3">Please rate:</p>
-                                            <div class="d-flex align-items-center" style="font-size: 12px;">
-                                                <i class="fa fa-star text-muted"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
-                                    </div>
+            <div class="table-responsive">
+                @RenderBody()
+            </div>
+            <div class="mt-5">
+                <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
+                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+            </div>
+            <div class="row g-4 justify-content-end">
+                <div class="col-8"></div>
+                <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+                    <div class="bg-light rounded">
+                        <div class="p-4">
+                            <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                            <div class="d-flex justify-content-between mb-4">
+                                <h5 class="mb-0 me-4">Subtotal:</h5>
+                                <p class="mb-0">$96.00</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="mb-0 me-4">Shipping</h5>
+                                <div class="">
+                                    <p class="mb-0">Flat rate: $3.00</p>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3">
-                    <div class="row g-4 fruite">
-                        <div class="col-lg-12">
-                            <div class="input-group w-100 mx-auto d-flex mb-4">
-                                <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                                <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                            </div>
-                            <div class="mb-4">
-                                @await Component.InvokeAsync("LoaiSpMenu")
-                            </div>
+                            <p class="mb-0 text-end">Shipping to Ukraine.</p>
                         </div>
+                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                            <h5 class="mb-0 ps-4 me-4">Total</h5>
+                            <p class="mb-0 pe-4">$99.00</p>
+                        </div>
+                        <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Single Product End -->
+    <!-- Cart Page End -->
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
         <div class="container py-5">
@@ -174,8 +152,8 @@
                 <div class="row g-4">
                     <div class="col-lg-3">
                         <a href="#">
-                            <h1 class="text-primary mb-0">Fine Coffee</h1>
-                            <p class="text-secondary mb-0">Fresh Drinks & Good Cake</p>
+                            <h1 class="text-primary mb-0">Fruitables</h1>
+                            <p class="text-secondary mb-0">Fresh products</p>
                         </a>
                     </div>
                     <div class="col-lg-6">
@@ -199,8 +177,8 @@
                     <div class="footer-item">
                         <h4 class="text-light mb-3">Why People Like us!</h4>
                         <p class="mb-4">
-                            we make not only coffee but also gaining passion from our guests, we serve and treat.
-                            Our customers will have a good experience when visit us.
+                            typesetting, remaining essentially unchanged. It was
+                            popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.
                         </p>
                         <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
                     </div>
@@ -230,11 +208,11 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
                         <h4 class="text-light mb-3">Contact</h4>
-                        <p>Address: 1 Nghia Tan, Ha Noi</p>
+                        <p>Address: 1429 Netus Rd, NY 48247</p>
                         <p>Email: Example@gmail.com</p>
                         <p>Phone: +0123 4567 8910</p>
                         <p>Payment Accepted</p>
-                        <img src="../coffee/../coffee/img/payment.png" class="img-fluid" alt="">
+                        <img src="img/payment.png" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>
@@ -275,3 +253,4 @@
 </body>
 
 </html>
+
