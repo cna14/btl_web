@@ -1,0 +1,49 @@
+﻿@using X.PagedList.Mvc.Core;
+@using btl.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model X.PagedList.IPagedList<LoaiSp>
+
+@{
+    ViewData["Title"] = "QLLoaiSP";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Quản lý loại sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã Loại
+            </th>
+            <th>
+                Tên Loại
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenLoai)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaLoai">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaLoai">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    @Html.PagedListPager(Model, page=>Url.Action("QLLoaiSP", new{page=page}), new X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses = new List<String> {"page-item"}, PageClasses = new List<String> {"page-link"}
+    })
+</div>
