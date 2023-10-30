@@ -1,5 +1,5 @@
-﻿@using btl.Models.ViewModels
-@model OrderItiemViewModel
+﻿
+@model Order
 @{
     ViewData["Title"] = "Order";
     Layout = "~/Views/Shared/orderLayout.cshtml";
@@ -17,58 +17,54 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.OrderItems.Count > 0)
-            {
-                @foreach (var item in Model.OrderItems)
+
+                @foreach (var line in Model?.Lines)
                 {
+
                     <tr>
                         <th scope="row">
                             <div class="d-flex align-items-center">
-                                <img src="@item.DuongDanAnh" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                <img src="@line.SanPham.DuongDanAnh" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                             </div>
                         </th>
                         <td>
-                            <p class="mb-0 mt-4">@item.TenSp</p>
+                            <p class="mb-0 mt-4">@line.SanPham.TenSp</p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">@item.GiaBan</p>
+                            <p class="mb-0 mt-4">@line.SanPham.GiaBan.ToString()</p>
                         </td>
                         <td>
                             <div class="input-group quantity mt-4" style="width: 100px;">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                        <a class="fa fa-minus" asp-controller="Order" asp-action="Decrease" asp-route-MaSp="@item.MaSp"></a>
+                                        <a class="fa fa-minus"></a>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control form-control-sm text-center border-0" value="@item.SoLuongb">
+                                <input type="text" class="form-control form-control-sm text-center border-0" value="@line.SoLuongb">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                        <a class="fa fa-plus" asp-controller="Order" asp-action="Increase" asp-route-MaSp="@item.MaSp"></a>
+                                        <a class="fa fa-plus"></a>
                                     </button>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">@Model.OrderItems.Where(x=>x.MaSp == item.MaSp).Sum(x=>x.GiaBan * x.SoLuongb).ToString()</p>
+                            <p class="mb-0 mt-4">
+                            @(line.SanPham.GiaBan * line.SoLuongb / 1000).000 VNĐ
+                                
+                            </p>
                         </td>
                         <td>
                             <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                <a class="fa fa-times text-danger" asp-controller="Order" asp-action="Remove" asp-route-MaSp="@item.MaSp"></a>
+                            <a href="/Cart/RemoveFromOrder/?maSp=@line.SanPham.MaSp" class="fa fa-times text-danger"></a>
                             </button>
                         </td>
 
                     </tr>
                 }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="6">
-                        <h4>Your Order is empty</h4>
-                    </td>
-                </tr>
+            @*
 
-            }
+            *@
         </tbody>
     </table>
 </div>
@@ -84,7 +80,7 @@
                 <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
                 <div class="d-flex justify-content-between mb-4">
                     <h5 class="mb-0 me-4">Subtotal:</h5>
-                    <p class="mb-0">@Model.TongTien.ToString()</p>
+                    <p class="mb-0">Thêm Tổng Tiền Hóa đơn</p>
                 </div>
             </div>
             <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
