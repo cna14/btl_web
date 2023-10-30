@@ -1,5 +1,5 @@
 ﻿using btl.Models;
-using btl.Models.ViewModels;
+
 using btl.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,40 +7,34 @@ namespace btl.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly MoCoffeeAndBakeryContext dataContext;
+        public Order? Order { get; set; }
+        private readonly MoCoffeeAndBakeryContext _context;
 
         public OrderController(MoCoffeeAndBakeryContext context)
         {
-            dataContext = context;
+            _context = context;
         }
-
-        public IActionResult Order()
+        public IActionResult AddToOrder(string maSp)
         {
-            List<OrderItemModel> orderItems = HttpContext.Session.GetJson<List<OrderItemModel>>("Order") ?? new List<OrderItemModel>();
-            OrderItiemViewModel cartVM = new()
+            SanPham? sanPham = _context.SanPhams.FirstOrDefault(x=>x.MaSp == maSp);
+            if (sanPham != null) 
             {
-                OrderItems = orderItems,
-                TongTien = orderItems.Sum(x => x.SoLuongb * x.GiaBan)
-
-            };
-            return View(cartVM);
+                Order = HttpContext.Session.GetJson<Order>("order") ?? new Order();
+                Order.AddItem(sanPham, 1);
+                HttpContext.Session.SetJson("order", Order);
+            }
+            return View("Order", Order);
         }
-
-        public async Task<IActionResult> Add(string maSp)
+        public IActionResult RemoveFromOrder(string maSp)
         {
-            SanPham sanPham = await dataContext.SanPhams.FindAsync(maSp);
-            List<OrderItemModel> order = HttpContext.Session.GetJson<List<OrderItemModel>>("Order") ?? new List<OrderItemModel>();
-            OrderItemModel orderItems = order.Where(x=>x.MaSp == maSp).FirstOrDefault();
-
-            if (orderItems == null)
+            SanPham? sanPham = _context.SanPhams.FirstOrDefault(x => x.MaSp == maSp);
+            if (sanPham != null)
             {
-                order.Add(new OrderItemModel(sanPham));
+                Order = HttpContext.Session.GetJson<Order>("order") ?? new Order();
+                Order.RemoveLine(sanPham);
+                HttpContext.Session.SetJson("order", Order);
             }
-            else
-            {
-                orderItems.SoLuongb += 1;
-            }
-            return Redirect(Request.Headers["Referer"].ToString());
+            return View("Order", Order);
         }
     }
 }

@@ -15,12 +15,7 @@ builder.Services.AddScoped<ILoaiSpRepository, LoaiSpRepository>();
 
 builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
-    options.Cookie.IsEssential = true;
-});
-
+builder.Services.AddSession();
 
 var app = builder.Build();
 
