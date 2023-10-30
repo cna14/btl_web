@@ -13,7 +13,14 @@ builder.Services.AddDbContext<MoCoffeeAndBakeryContext>(x=>x.UseSqlServer(connec
 
 builder.Services.AddScoped<ILoaiSpRepository, LoaiSpRepository>();
 
-builder.Services.AddSession();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.IsEssential = true;
+});
+
 
 var app = builder.Build();
 
