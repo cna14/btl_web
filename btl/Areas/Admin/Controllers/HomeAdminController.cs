@@ -105,23 +105,6 @@ namespace btl.Areas.Admin.Controllers
         }
 
 
-
-        //Quản lý loại sản phẩm
-        [Route("QLLoaiSP")]
-        [Authentication]
-        public IActionResult QLLoaiSP(int? page)
-        {
-            int pageSize = 4;
-            int pageNumber = page == null || page < 0 ? 1 : page.Value;
-
-            var listloai = a.LoaiSps.AsNoTracking().OrderBy(x => x.MaLoai);
-            PagedList<LoaiSp> list = new PagedList<LoaiSp>(listloai, pageNumber, pageSize);
-
-            return View(list);
-        }
-
-
-
         //Quản lý mã giảm giá
         [Route("QLMaGiamGia")]
         [Authentication]
@@ -168,28 +151,7 @@ namespace btl.Areas.Admin.Controllers
             return View(list);
         }
 
-        //Them
-        [Route("ThemNguoiDung")]
-        [HttpGet]
-        [Authentication]
-        public IActionResult ThemNguoiDung()
-        {
-            return View();
-        }
-        [Route("ThemNguoiDung")]
-        [HttpPost]
-        [Authentication]
-        [ValidateAntiForgeryToken]
-        public IActionResult ThemNguoiDung(NguoiDung nguoiDung)
-        {
-            if (ModelState.IsValid)
-            {
-                a.NguoiDungs.Add(nguoiDung);
-                a.SaveChanges();
-                return RedirectToAction("ThemNguoiDung");
-            }
-            return View(nguoiDung);
-        }
+        
 
         //Sửa
         [Route("SuaNguoiDung")]

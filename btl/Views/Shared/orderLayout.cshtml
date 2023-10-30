@@ -18,19 +18,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../coffee/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="../coffee/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/coffee/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/coffee/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../coffee/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/coffee/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../coffee/css/style.css" rel="stylesheet">
+    <link href="/coffee/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-
+    <p>CuonghNH test</p>
     <!-- Spinner Start -->
     <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
@@ -66,13 +66,25 @@
                     </div>
                     <div class="d-flex m-3 me-0">
                         <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                        <a asp-controller="Order" asp-action="Order" class="position-relative me-4 my-auto">
+                        <a href="/Order/Index" class="position-relative me-4 my-auto">
                             <i class="fa fa-shopping-bag fa-2x"></i>
 
                         </a>
-                        <a href="#" class="my-auto">
-                            <i class="fas fa-user fa-2x"></i>
-                        </a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-2x"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a asp-controller="Admin" asp-action="Index" class="my-auto">
+                                    <!--<i class="fas fa-user fa-2x"></i>-->
+                                    <i>Go to Admin</i>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <a asp-controller="Access" asp-action="Logout" class="my-auto">
+                                    <i>Logout</i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -182,7 +194,7 @@
                         <p>Email: Example@gmail.com</p>
                         <p>Phone: +0123 4567 8910</p>
                         <p>Payment Accepted</p>
-                        <img src="img/payment.png" class="img-fluid" alt="">
+                        <img src="/coffee/img/payment.png" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>
@@ -213,13 +225,13 @@
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../coffee/lib/easing/easing.min.js"></script>
-    <script src="../coffee/lib/waypoints/waypoints.min.js"></script>
-    <script src="../coffee/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="../coffee/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/coffee/lib/easing/easing.min.js"></script>
+    <script src="/coffee/lib/waypoints/waypoints.min.js"></script>
+    <script src="/coffee/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="/coffee/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../coffee/js/main.js"></script>
+    <script src="/coffee/js/main.js"></script>
 </body>
 
 </html>
